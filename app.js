@@ -479,6 +479,8 @@ if (typeof module !== 'undefined' && module.exports) {
     var cols = S.perRow > 0 ? S.perRow : Math.ceil(count / 2);
     el.style.setProperty('--sh', (cap <= 4 ? 34 : cap <= 6 ? 28 : 23) + 'px');
     el.style.gridTemplateColumns = 'repeat(' + Math.max(1, cols) + ', minmax(0, 1fr))';
+    // Keep tubes close together on wide screens (laptops); full width on phones.
+    el.style.maxWidth = Math.max(1, cols) * 76 + 'px';
   }
 
   function renderBoard() {
