@@ -864,7 +864,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
     // Move list (built once, highlighted in renderPlayer)
     $('moveList').innerHTML = P.moves.map(function (m, i) {
-      return '<button type="button" class="mv" data-i="' + i + '">' + (i + 1) + '. ' + (m.from + 1) + '→' + (m.to + 1) + '</button>';
+      return '<button type="button" class="mv" data-i="' + i + '" aria-label="Step ' + (i + 1) + ': tube ' + (m.from + 1) + ' to tube ' + (m.to + 1) + '">' + (m.from + 1) + '→' + (m.to + 1) + '</button>';
     }).join('');
 
     $('result').hidden = false;

@@ -106,7 +106,7 @@ details[open] > summary { margin-bottom: 4px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
 
 /* ---------- tubes ---------- */
-.tubes { display: grid; gap: 14px 6px; justify-items: center; --sh: 34px; padding: 6px 0; }
+.tubes { margin: 0 auto; width: 100%; display: grid; gap: 14px 6px; justify-items: center; --sh: 34px; padding: 6px 0; }
 .tw { width: 100%; max-width: 58px; display: flex; flex-direction: column; align-items: center; border-radius: 12px; padding: 3px 0; }
 .tube {
   width: 100%; display: flex; flex-direction: column; padding: 3px 3px 5px;
@@ -163,10 +163,10 @@ details[open] > summary { margin-bottom: 4px; }
 .fields.tight { margin-bottom: 0; }
 .jumprow { display: grid; grid-template-columns: 1fr 70px; gap: 8px; }
 input[type=range] { width: 100%; min-height: var(--tap); accent-color: var(--accent); background: none; border: 0; padding: 0; }
-.moves { max-height: 11rem; overflow-y: auto; position: relative; display: flex; flex-wrap: wrap; gap: 6px; padding: 2px; }
-.mv { min-height: 38px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel2); color: var(--text); font: inherit; font-size: .88rem; cursor: pointer; font-variant-numeric: tabular-nums; }
-.mv.past { color: var(--muted); }
-.mv.cur { background: var(--accent); color: var(--on-accent); border-color: var(--accent); font-weight: 700; }
+.moves { max-height: 11rem; overflow-y: auto; position: relative; display: flex; flex-wrap: wrap; gap: 4px 2px; padding: 2px; }
+.mv { min-height: 40px; padding: 0 10px; border: 0; border-radius: 8px; background: none; color: var(--text); font: inherit; font-weight: 800; font-size: 1.05rem; cursor: pointer; font-variant-numeric: tabular-nums; }
+.mv.past { color: var(--muted); font-weight: 600; }
+.mv.cur { background: var(--accent); color: var(--on-accent); }
 
 /* ---------- misc ---------- */
 .startbar {
