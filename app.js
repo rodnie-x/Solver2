@@ -472,16 +472,18 @@ if (typeof module !== 'undefined' && module.exports) {
     }
     return h;
   }
-  function layoutGrid(el, cap) {
+  /* Layout: "Auto" splits the tubes into two rows, the top row getting the
+     extra tube when the count is odd (10 -> 5+5, 9 -> 5+4, 8 -> 4+4).
+     A fixed "Tubes per row" value overrides this. */
+  function layoutGrid(el, cap, count) {
+    var cols = S.perRow > 0 ? S.perRow : Math.ceil(count / 2);
     el.style.setProperty('--sh', (cap <= 4 ? 34 : cap <= 6 ? 28 : 23) + 'px');
-    el.style.gridTemplateColumns = S.perRow > 0
-      ? 'repeat(' + S.perRow + ', minmax(0, 1fr))'
-      : 'repeat(auto-fill, minmax(48px, 1fr))';
+    el.style.gridTemplateColumns = 'repeat(' + Math.max(1, cols) + ', minmax(0, 1fr))';
   }
 
   function renderBoard() {
     var el = $('board');
-    layoutGrid(el, S.cap);
+    layoutGrid(el, S.cap, S.tubeCount);
     el.innerHTML = tubesHTML(S.tubes, S.cap, { sel: sel });
     $('clearTube').disabled = !sel;
     $('fastBtn').setAttribute('aria-pressed', fast ? 'true' : 'false');
@@ -877,7 +879,7 @@ if (typeof module !== 'undefined' && module.exports) {
   function renderPlayer(fresh) {
     if (!P) return;
     var el = $('playBoard'), done = P.s >= P.n, m = done ? null : P.moves[P.s];
-    layoutGrid(el, P.cap);
+    layoutGrid(el, P.cap, P.snaps[0].length);
     el.innerHTML = tubesHTML(P.snaps[P.s], P.cap, { from: m ? m.from : -1, to: m ? m.to : -1, fresh: fresh });
 
     if (P.n === 0) $('stepText').innerHTML = 'Nothing to do. Every tube is already sorted.';
